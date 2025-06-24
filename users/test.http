@@ -1,0 +1,50 @@
+### CADASTRAR GERENTE (formulário privado)
+POST http://localhost:8000/api/users/register/gerente/
+Content-Type: application/json
+
+{
+  "email": "gerente@empresa.com",
+  "full_name": "Carlos Gerente",
+  "phone": "11999999999",
+  "cpf": "111.222.333-44",
+  "city": "São Paulo",
+  "state": "SP",
+  "password": "senha123"
+}
+
+### CADASTRAR MONTADOR
+POST http://localhost:8000/api/users/register/montador/
+Content-Type: application/json
+
+{
+  "email": "montador1@empresa.com",
+  "full_name": "João Montador",
+  "phone": "11988888888",
+  "cpf": "555.666.777-88",
+  "city": "Campinas",
+  "state": "SP",
+  "region_lat": -22.9099,
+  "region_lng": -47.0626,
+  "password": "senha123"
+}
+
+### LOGIN (gerente ou montador)
+POST http://localhost:8000/api/users/login/
+Content-Type: application/json
+
+{
+  "email": "montador1@empresa.com",
+  "password": "senha123"
+}
+
+### LISTAR MONTADORES PENDENTES (somente gerente)
+GET http://localhost:8000/api/users/gerente/montadores/pendentes/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNzg1Nzk0LCJpYXQiOjE3NTA3Nzg1OTQsImp0aSI6IjYwYWJjYmJiNTU1YTRjMmNiZjg5NWRkY2I0ZTJlMjU2IiwidXNlcl9pZCI6IjYzNzY2MzljLTkyZmItNDRmZC1hMDJkLTY2Yjk1ZTFkMGMxNyIsInVzZXJfdHlwZSI6Im1hbmFnZXIiLCJmdWxsX25hbWUiOiJDYXJsb3MgR2VyZW50ZSIsImVtYWlsIjoiZ2VyZW50ZUBlbXByZXNhLmNvbSJ9.0az5PJ9C01jKpC7OI-yHfVxUNUbgF2eDQHwsB4GapB8
+
+### APROVAR MONTADOR (substitua o UUID pelo ID retornado da listagem)
+PUT http://localhost:8000/api/users/gerente/montadores/aprovar/e4e9c51e-1b36-4bfd-ad2e-570d1239108e/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNzg1Nzk0LCJpYXQiOjE3NTA3Nzg1OTQsImp0aSI6IjYwYWJjYmJiNTU1YTRjMmNiZjg5NWRkY2I0ZTJlMjU2IiwidXNlcl9pZCI6IjYzNzY2MzljLTkyZmItNDRmZC1hMDJkLTY2Yjk1ZTFkMGMxNyIsInVzZXJfdHlwZSI6Im1hbmFnZXIiLCJmdWxsX25hbWUiOiJDYXJsb3MgR2VyZW50ZSIsImVtYWlsIjoiZ2VyZW50ZUBlbXByZXNhLmNvbSJ9.0az5PJ9C01jKpC7OI-yHfVxUNUbgF2eDQHwsB4GapB8
+
+### REJEITAR MONTADOR (substitua o UUID pelo ID retornado da listagem)
+DELETE http://localhost:8000/api/users/gerente/montadores/rejeitar/{{montador_id}}/
+Authorization: Bearer {{token}}
