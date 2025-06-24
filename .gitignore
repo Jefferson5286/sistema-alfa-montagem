@@ -1,4 +1,5 @@
 .venv
 ./exclude
+db.sqlite3
 
 *.pyc
